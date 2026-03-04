@@ -1,13 +1,12 @@
 #[allow(unused_imports)]
-use std::io::{self, stdin, stdout, Write};
+use std::io::{stdin, stdout, Write};
 
 fn main() {
     let mut command = String::new();
 
     print!("$ ");
+    stdout().flush().unwrap();
     stdin().read_line(&mut command).unwrap();
 
     println!("{}: command not found", command.trim());
-
-    stdout().flush().unwrap();
 }
