@@ -10,5 +10,6 @@ fn main() {
 
         stdin().read_line(&mut command).unwrap();
         println!("{}: command not found", command.trim());
+        command.clear();
     }
 }
