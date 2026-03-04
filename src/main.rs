@@ -1,5 +1,5 @@
 #[allow(unused_imports)]
-use std::io::stdin;
+use std::io::{self, stdin, stdout, Write};
 
 fn main() {
     let mut command = String::new();
@@ -9,5 +9,5 @@ fn main() {
 
     println!("{}: command not found", command.trim());
 
-    io::stdout().flush().unwrap();
+    stdout().flush().unwrap();
 }
