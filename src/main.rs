@@ -8,7 +8,12 @@ fn main() {
         stdout().flush().unwrap();
 
         stdin().read_line(&mut command).unwrap();
-        println!("{}: command not found", command.trim());
-        command.clear();
+        command = command.trim().to_string();
+        if command == "exit" {
+            break;
+        } else {
+            println!("{}: command not found", command.trim());
+            command.clear();
+        }
     }
 }
