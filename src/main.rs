@@ -9,11 +9,17 @@ fn main() {
 
         stdin().read_line(&mut command).unwrap();
         command = command.trim().to_string();
-        if command == "exit" {
-            break;
-        } else {
-            println!("{}: command not found", command.trim());
-            command.clear();
+
+        match command.as_str() {
+            "exit" => break,
+            _ if command.starts_with("echo ") => {
+                println!("{}", &command[5..]);
+            }
+            _ => {
+                println!("{}: command not found", command.trim());
+            },
         }
+
+        command.clear();
     }
 }
