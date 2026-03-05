@@ -9,7 +9,7 @@ pub fn run(input: &str) {
         }
     } else {
         match input {
-            "exit" => return,
+            "exit" => std::process::exit(0),
             _ => println!("{}: command not found", input)
         }
     }
@@ -19,7 +19,7 @@ fn run_type(arg: &str) {
     match arg {
         "echo" | "type" | "exit" => println!("{} is a shell builtin", arg),
         _ => {
-            if let Some(path) = find_executable_in_path("ls") {
+            if let Some(path) = find_executable_in_path(arg) {
                 println!("{} is {}", arg, path.display());
             } else {
                 println!("{}: not found", arg);
