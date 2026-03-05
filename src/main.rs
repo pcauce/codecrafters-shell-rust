@@ -1,33 +1,19 @@
-use std::io::{stdin, stdout, Write};
+use std::io::{Write, stdin, stdout};
+use codecrafters_shell::commands::run;
 
 fn main() {
-    let mut command = String::new();
-
     loop {
+        // Print command prompt
         print!("$ ");
         stdout().flush().unwrap();
 
+        // Read user command
+        let mut command = String::new();
         stdin().read_line(&mut command).unwrap();
-        command = command.trim().to_string();
 
-        match command.as_str() {
-            "exit" => break,
-            _ if command.starts_with("echo ") => {
-                println!("{}", &command[5..]);
-            }
-            _ if command.starts_with("type ") => {
-                let arg = &command[5..];
-
-                match arg {
-                    "echo" | "exit" | "type" => println!("{} is a shell builtin", arg),
-                    _ => println!("{}: not found", arg),
-                }
-            }
-            _ => {
-                println!("{}: command not found", command.trim());
-            },
-        }
-
-        command.clear();
+        // Parse input and run it
+        run(command.trim());
     }
 }
+
+
